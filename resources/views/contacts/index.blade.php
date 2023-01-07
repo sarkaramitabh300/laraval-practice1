@@ -23,27 +23,32 @@
 
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Phone</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
                                         <th scope="col">Company</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    {{-- @forelse ($contactsA as $id => $contact)
-                                        @include('contacts._contact')
+                                    @forelse ($contactsA as $index => $contact)
+                                        @include('contacts._contact', [
+                                            'contact' => $contact,
+                                            'index' => $index,
+                                        ])
                                     @empty
-                                        <p>No contact found </p>
-                                    @endforelse --}}
+                                        @include('contacts._empty')
+                                    @endforelse
 
-                                    @each('contacts._contact', $contactsA, 'contact','contacts._empty')
+                                    {{-- @each('contacts._contact', $contactsA, 'contact', 'contacts._empty') --}}
 
                                 </tbody>
                             </table>
 
-                            <nav class="mt-4">
+                            {{ $contactsA->withQueryString()->links() }}
+                            {{-- <nav class="mt-4">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item disabled">
                                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
@@ -55,7 +60,7 @@
                                         <a class="page-link" href="#">Next</a>
                                     </li>
                                 </ul>
-                            </nav>
+                            </nav> --}}
                         </div>
                     </div>
                 </div>

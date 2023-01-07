@@ -24,6 +24,7 @@ Route::get('/', WelcomeController::class);
 
 Route::controller(ContactController::class)->name('contacts.')->group(function () {
     Route::get('/contacts',  'index')->name('index');
+    Route::post('/contacts',  'store')->name('store');
 
     Route::get('/contacts/create',  'create')->name('create');
 
